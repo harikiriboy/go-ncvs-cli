@@ -1,0 +1,37 @@
+memo = "a7cb1211fbb0b63c0eda689ac8acc1a5f26202dab21028976a48a924794c2de4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/google/subcommands"
+  packages = ["."]
+  revision = "ce3d4cfc062faac7115d44e5befec8b5a08c3faa"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/gopherjs/gopherjs"
+  packages = ["js"]
+  revision = "3496c6f94e1b945f3fc9580f6982675c0a74cd6c"
+
+[[projects]]
+  name = "github.com/jtolds/gls"
+  packages = ["."]
+  revision = "8ddce2a84170772b95dd5d576c48d517b22cac63"
+  version = "v4.2.0"
+
+[[projects]]
+  name = "github.com/smartystreets/assertions"
+  packages = [".","internal/go-render/render","internal/oglematchers"]
+  revision = "e9a2f6771d97c709b2f7609fdf89ebde8b64c926"
+  version = "1.6.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/smartystreets/go-aws-auth"
+  packages = ["."]
+  revision = "2043e6d0bb7e4c18464a7bba562acbe482e3cabd"
+
+[[projects]]
+  name = "github.com/smartystreets/goconvey"
+  packages = ["convey","convey/gotest","convey/reporting"]
+  revision = "d4c757aa9afd1e2fc1832aaab209b5794eb336e1"
+  version = "1.6.2"
