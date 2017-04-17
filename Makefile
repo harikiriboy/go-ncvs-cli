@@ -1,6 +1,7 @@
 .PHONY: \
 	build \
 	clean \
+	coveralls \
 	dep \
 	fmt \
 	fmtcheck \
@@ -24,8 +25,13 @@ build: main.go
 clean:
 	$(foreach pkg,$(PKGS),go clean $(pkg) || exit;)
 
+coveralls:
+	goveralls -service=travis-ci
+
 dep:
 	@go get -u github.com/golang/dep/...
+	@go get github.com/axw/gocov/gocov
+	@go get github.com/mattn/goveralls
 	dep ensure
 
 fmt:
