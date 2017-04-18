@@ -23,8 +23,9 @@ func main() {
 	subcommands.Register(subcommands.CommandsCommand(), "")
 
 	subcommands.Register(&commands.Version{Version: version, Writer: writer}, "version")
-	subcommands.Register(&commands.DescribeScanTemplates{Client: client, Writer: writer}, "describe-scan-templates")
 	subcommands.Register(&commands.DescribeScanHistories{Client: client, Writer: writer}, "describe-scan-histories")
+	subcommands.Register(&commands.DescribeScanResults{Client: client, Writer: writer}, "describe-scan-results")
+	subcommands.Register(&commands.DescribeScanTemplates{Client: client, Writer: writer}, "describe-scan-templates")
 	subcommands.Register(&commands.ExecuteScan{Client: client, Writer: writer}, "execute-scan")
 
 	flag.Parse()

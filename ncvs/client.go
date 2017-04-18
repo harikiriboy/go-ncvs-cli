@@ -20,9 +20,10 @@ const (
 
 // Client interface
 type Client interface {
+	DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error)
+	DescribeScanResults(params DescribeScanResultsParams) (res string, err error)
 	DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error)
 	ExecuteScan(params ExecuteScanParams) (res string, err error)
-	DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error)
 }
 
 // client struct
@@ -37,6 +38,20 @@ func NewClient(endpoint string) Client {
 	}
 }
 
+// DescribeScanHistories call DescribeScanHistories API and return Response
+func (c *client) DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error) {
+	const action = "DescribeScanHistories"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
+}
+
+// DescribeScanResults call DescribeScanResults API and return Response
+func (c *client) DescribeScanResults(params DescribeScanResultsParams) (res string, err error) {
+	const action = "DescribeScanResults"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
+}
+
 // DescribeScanTemplates call DescribeScanTemplates API and return Response
 func (c *client) DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error) {
 	const action = "DescribeScanTemplates"
@@ -47,13 +62,6 @@ func (c *client) DescribeScanTemplates(params DescribeScanTemplatesParams) (res 
 // ExecuteScan call ExecuteScan API and return Response
 func (c *client) ExecuteScan(params ExecuteScanParams) (res string, err error) {
 	const action = "ExecuteScan"
-	res, err = c.doRequest(c.makeRequest(action, params))
-	return
-}
-
-// DescribeScanHistories call DescribeScanHistories API and return Response
-func (c *client) DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error) {
-	const action = "DescribeScanHistories"
 	res, err = c.doRequest(c.makeRequest(action, params))
 	return
 }
