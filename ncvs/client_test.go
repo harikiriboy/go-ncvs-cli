@@ -42,6 +42,20 @@ const testExecuteScanResponse = `{
   }
 }`
 
+// testDescribeScanHistoriesResponse is dummy response of describeScanHistories
+const testDescribeScanHistoriesResponse = `{
+  "RequestID":"test_request_id",
+  "ScanHistries": [
+    {
+      "ScanHistoryUUID": "test_scan_history_uuid",
+      "Status": "test_status",
+      "StartTime": "test_start_time",
+      "EndTime": "test_end_time",
+      "ScanTemplateName": "test_scan_template_name"
+    }
+  ]
+}`
+
 // NewTestClient creates dummy http client of ncvs
 func newTestClient(body string) (*httptest.Server, Client) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -74,6 +88,17 @@ func TestNCVSClient(t *testing.T) {
 			var actual, expected interface{}
 			json.Unmarshal([]byte(res), &actual)
 			json.Unmarshal([]byte(testExecuteScanResponse), &expected)
+
+			So(err, ShouldBeNil)
+			So(actual, ShouldResemble, expected)
+		})
+		Convey("should success describe scan histories", func() {
+			_, client := newTestClient(testDescribeScanHistoriesResponse)
+			res, err := client.DescribeScanHistories(DescribeScanHistoriesParams{})
+
+			var actual, expected interface{}
+			json.Unmarshal([]byte(res), &actual)
+			json.Unmarshal([]byte(testDescribeScanHistoriesResponse), &expected)
 
 			So(err, ShouldBeNil)
 			So(actual, ShouldResemble, expected)

@@ -22,6 +22,7 @@ const (
 type Client interface {
 	DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error)
 	ExecuteScan(params ExecuteScanParams) (res string, err error)
+	DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error)
 }
 
 // client struct
@@ -46,6 +47,13 @@ func (c *client) DescribeScanTemplates(params DescribeScanTemplatesParams) (res 
 // ExecuteScan call ExecuteScan API and return Response
 func (c *client) ExecuteScan(params ExecuteScanParams) (res string, err error) {
 	const action = "ExecuteScan"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
+}
+
+// DescribeScanHistories call DescribeScanHistories API and return Response
+func (c *client) DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error) {
+	const action = "DescribeScanHistories"
 	res, err = c.doRequest(c.makeRequest(action, params))
 	return
 }
