@@ -24,6 +24,7 @@ func main() {
 
 	subcommands.Register(&commands.Version{Version: version, Writer: writer}, "version")
 	subcommands.Register(&commands.DescribeScanTemplates{Client: client, Writer: writer}, "describe-scan-templates")
+	subcommands.Register(&commands.ExecuteScan{Client: client, Writer: writer}, "execute-scan")
 
 	flag.Parse()
 
@@ -31,6 +32,7 @@ func main() {
 	os.Exit(int(subcommands.Execute(ctx)))
 }
 
+// getAPIEndpoint return ncvs api endpoint
 func getAPIEndpoint() string {
 	endpoint := os.Getenv("NIFTY_CLOUD_VSS_URL")
 	if endpoint == "" {

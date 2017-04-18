@@ -10,7 +10,7 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 )
 
-// TestDescribeScanTemplatesResponse is dummy response of describeScanTemplates
+// testDescribeScanTemplatesResponse is dummy response of describeScanTemplates
 const testDescribeScanTemplatesResponse = `{
   "RequestID":"test_request_id",
   "ScanTemplates": [
@@ -28,6 +28,18 @@ const testDescribeScanTemplatesResponse = `{
       "CreatedTime": "test_created_time"
     }
   ]
+}`
+
+// testExecuteScanResponse is dummy response of executeScan
+const testExecuteScanResponse = `{
+  "RequestID":"test_request_id",
+  "ScanHistory": {
+    "ScanHistoryUUID": "test_scan_history_uuid",
+    "Status": "test_status",
+    "StartTime": "test_start_time",
+    "EndTime": "test_end_time",
+    "ScanTemplateName": "test_scan_template_name"
+  }
 }`
 
 // NewTestClient creates dummy http client of ncvs
@@ -51,6 +63,17 @@ func TestNCVSClient(t *testing.T) {
 			var actual, expected interface{}
 			json.Unmarshal([]byte(res), &actual)
 			json.Unmarshal([]byte(testDescribeScanTemplatesResponse), &expected)
+
+			So(err, ShouldBeNil)
+			So(actual, ShouldResemble, expected)
+		})
+		Convey("should success execute scan", func() {
+			_, client := newTestClient(testExecuteScanResponse)
+			res, err := client.ExecuteScan(ExecuteScanParams{})
+
+			var actual, expected interface{}
+			json.Unmarshal([]byte(res), &actual)
+			json.Unmarshal([]byte(testExecuteScanResponse), &expected)
 
 			So(err, ShouldBeNil)
 			So(actual, ShouldResemble, expected)
