@@ -11,7 +11,7 @@ import (
 )
 
 func TestDescribeScanTemplates(t *testing.T) {
-	Convey("Tests DescribeTemplates", t, func() {
+	Convey("Tests DescribeScanTemplates", t, func() {
 		client := newMockClient()
 		out := new(bytes.Buffer)
 
