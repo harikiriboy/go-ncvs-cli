@@ -23,6 +23,7 @@ type Client interface {
 	DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error)
 	DescribeScanResults(params DescribeScanResultsParams) (res string, err error)
 	DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error)
+	DownloadScanResults(params DownloadScanResultsParams) (res string, err error)
 	ExecuteScan(params ExecuteScanParams) (res string, err error)
 }
 
@@ -55,6 +56,13 @@ func (c *client) DescribeScanResults(params DescribeScanResultsParams) (res stri
 // DescribeScanTemplates call DescribeScanTemplates API and return Response
 func (c *client) DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error) {
 	const action = "DescribeScanTemplates"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
+}
+
+// DownloadScanResults call DownloadScanResults API and return Response
+func (c *client) DownloadScanResults(params DownloadScanResultsParams) (res string, err error) {
+	const action = "DownloadScanResults"
 	res, err = c.doRequest(c.makeRequest(action, params))
 	return
 }

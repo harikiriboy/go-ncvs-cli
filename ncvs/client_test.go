@@ -82,6 +82,12 @@ const testDescribeScanResultsResponse = `{
   ]
 }`
 
+// testDownloadScanResultsResponse is dummy response of downloadScanResults
+const testDownloadScanResultsResponse = `{
+  "RequestID":"test_request_id",
+  "DownloadURL": "test_download_url"
+}`
+
 // NewTestClient creates dummy http client of ncvs
 func newTestClient(body string) (*httptest.Server, Client) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -136,6 +142,17 @@ func TestNCVSClient(t *testing.T) {
 			var actual, expected interface{}
 			json.Unmarshal([]byte(res), &actual)
 			json.Unmarshal([]byte(testDescribeScanResultsResponse), &expected)
+
+			So(err, ShouldBeNil)
+			So(actual, ShouldResemble, expected)
+		})
+		Convey("should success download scan results", func() {
+			_, client := newTestClient(testDownloadScanResultsResponse)
+			res, err := client.DownloadScanResults(DownloadScanResultsParams{})
+
+			var actual, expected interface{}
+			json.Unmarshal([]byte(res), &actual)
+			json.Unmarshal([]byte(testDownloadScanResultsResponse), &expected)
 
 			So(err, ShouldBeNil)
 			So(actual, ShouldResemble, expected)

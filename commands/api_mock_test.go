@@ -52,3 +52,12 @@ func (m *mockErrorClient) DescribeScanHistories(params ncvs.DescribeScanHistorie
 	err = fmt.Errorf("this is dummy error.")
 	return
 }
+
+func (m *mockClient) DownloadScanResults(params ncvs.DownloadScanResultsParams) (res string, err error) {
+	return "this is dummy response.", nil
+}
+
+func (m *mockErrorClient) DownloadScanResults(params ncvs.DownloadScanResultsParams) (res string, err error) {
+	err = fmt.Errorf("this is dummy error.")
+	return
+}
