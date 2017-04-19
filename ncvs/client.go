@@ -20,6 +20,7 @@ const (
 
 // Client interface
 type Client interface {
+	DeleteScanTemplate(params DeleteScanTemplateParams) (res string, err error)
 	DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error)
 	DescribeScanResults(params DescribeScanResultsParams) (res string, err error)
 	DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error)
@@ -37,6 +38,13 @@ func NewClient(endpoint string) Client {
 	return &client{
 		endpoint: endpoint,
 	}
+}
+
+// DeleteScanTemplate call DeleteScanTemplate API and return Response
+func (c *client) DeleteScanTemplate(params DeleteScanTemplateParams) (res string, err error) {
+	const action = "DeleteScanTemplate"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
 }
 
 // DescribeScanHistories call DescribeScanHistories API and return Response

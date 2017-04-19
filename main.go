@@ -14,7 +14,6 @@ import (
 var version string
 
 func main() {
-
 	writer := writer.New(os.Stdout)
 	client := ncvs.NewClient(getAPIEndpoint())
 
@@ -23,6 +22,7 @@ func main() {
 	subcommands.Register(subcommands.CommandsCommand(), "")
 
 	subcommands.Register(&commands.Version{Version: version, Writer: writer}, "version")
+	subcommands.Register(&commands.DeleteScanTemplate{Client: client, Writer: writer}, "delete-scan-template")
 	subcommands.Register(&commands.DescribeScanHistories{Client: client, Writer: writer}, "describe-scan-histories")
 	subcommands.Register(&commands.DescribeScanResults{Client: client, Writer: writer}, "describe-scan-results")
 	subcommands.Register(&commands.DescribeScanTemplates{Client: client, Writer: writer}, "describe-scan-templates")

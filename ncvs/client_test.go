@@ -86,6 +86,12 @@ const testDescribeScanResultsResponse = `{
 const testDownloadScanResultsResponse = `{
   "RequestID":"test_request_id",
   "DownloadURL": "test_download_url"
+
+}`
+
+// testDeleteScanTemplateResponse is dummy response of deleteScanTemplate
+const testDeleteScanTemplateResponse = `{
+  "RequestID":"test_request_id"
 }`
 
 // NewTestClient creates dummy http client of ncvs
@@ -102,6 +108,17 @@ func newTestClient(body string) (*httptest.Server, Client) {
 
 func TestNCVSClient(t *testing.T) {
 	Convey("Tests NCVS Client", t, func() {
+		Convey("should success delete scan template", func() {
+			_, client := newTestClient(testDeleteScanTemplateResponse)
+			res, err := client.DeleteScanTemplate(DeleteScanTemplateParams{})
+
+			var actual, expected interface{}
+			json.Unmarshal([]byte(res), &actual)
+			json.Unmarshal([]byte(testDeleteScanTemplateResponse), &expected)
+
+			So(err, ShouldBeNil)
+			So(actual, ShouldResemble, expected)
+		})
 		Convey("should success describe scan templates", func() {
 			_, client := newTestClient(testDescribeScanTemplatesResponse)
 			res, err := client.DescribeScanTemplates(DescribeScanTemplatesParams{})
