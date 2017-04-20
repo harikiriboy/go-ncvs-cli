@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"runtime"
 
 	"github.com/smartystreets/go-aws-auth"
 )
@@ -119,6 +120,7 @@ func (c *client) makeRequest(action string, params interface{}) (req *http.Reque
 	endpoint, _ := url.Parse(c.endpoint)
 	req, _ = http.NewRequest("POST", endpoint.String(), c.encodeJSON(params))
 
+	req.Header.Set("User-Agent", "go-ncvs-cli "+runtime.GOOS+" "+runtime.GOARCH)
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("X-Amz-Target", DefaultAPIVersion+"."+action)
 	awsauth.Sign4(req)
