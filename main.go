@@ -25,6 +25,7 @@ func main() {
 	subcommands.Register(&commands.CreateScanTemplate{Client: client, Writer: writer}, "create-scan-template")
 	subcommands.Register(&commands.DeleteScanTemplate{Client: client, Writer: writer}, "delete-scan-template")
 	subcommands.Register(&commands.DescribeRulePackages{Client: client, Writer: writer}, "describe-rule-packages")
+	subcommands.Register(&commands.DescribeRulePackageAttributes{Client: client, Writer: writer}, "describe-rule-package-attributes")
 	subcommands.Register(&commands.DescribeScanHistories{Client: client, Writer: writer}, "describe-scan-histories")
 	subcommands.Register(&commands.DescribeScanResults{Client: client, Writer: writer}, "describe-scan-results")
 	subcommands.Register(&commands.DescribeScanTemplates{Client: client, Writer: writer}, "describe-scan-templates")

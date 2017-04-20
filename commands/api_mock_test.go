@@ -97,3 +97,12 @@ func (m *mockErrorClient) DescribeRulePackages(params ncvs.DescribeRulePackagesP
 	err = fmt.Errorf("this is dummy error.")
 	return
 }
+
+func (m *mockClient) DescribeRulePackageAttributes(params ncvs.DescribeRulePackageAttributesParams) (res string, err error) {
+	return "this is dummy response.", nil
+}
+
+func (m *mockErrorClient) DescribeRulePackageAttributes(params ncvs.DescribeRulePackageAttributesParams) (res string, err error) {
+	err = fmt.Errorf("this is dummy error.")
+	return
+}

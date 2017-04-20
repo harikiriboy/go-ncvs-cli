@@ -13,8 +13,6 @@ import (
 type DescribeRulePackages struct {
 	Client ncvs.Client
 	Writer writer.Writer
-
-	scanTemplateName string
 }
 
 // Name return command name
