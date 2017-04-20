@@ -17,6 +17,15 @@ func newMockErrorClient() ncvs.Client {
 	return &mockErrorClient{}
 }
 
+func (m *mockClient) CreateScanTemplate(params ncvs.CreateScanTemplateParams) (res string, err error) {
+	return "this is dummy response.", nil
+}
+
+func (m *mockErrorClient) CreateScanTemplate(params ncvs.CreateScanTemplateParams) (res string, err error) {
+	err = fmt.Errorf("this is dummy error.")
+	return
+}
+
 func (m *mockClient) DescribeScanTemplates(params ncvs.DescribeScanTemplatesParams) (res string, err error) {
 	return "this is dummy response.", nil
 }
