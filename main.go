@@ -29,6 +29,7 @@ func main() {
 	subcommands.Register(&commands.DescribeScanTemplates{Client: client, Writer: writer}, "describe-scan-templates")
 	subcommands.Register(&commands.DownloadScanResults{Client: client, Writer: writer}, "download-scan-results")
 	subcommands.Register(&commands.ExecuteScan{Client: client, Writer: writer}, "execute-scan")
+	subcommands.Register(&commands.UpdateScanTemplate{Client: client, Writer: writer}, "update-scan-template")
 
 	flag.Parse()
 

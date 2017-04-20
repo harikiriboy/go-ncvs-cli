@@ -79,3 +79,12 @@ func (m *mockErrorClient) DeleteScanTemplate(params ncvs.DeleteScanTemplateParam
 	err = fmt.Errorf("this is dummy error.")
 	return
 }
+
+func (m *mockClient) UpdateScanTemplate(params ncvs.UpdateScanTemplateParams) (res string, err error) {
+	return "this is dummy response.", nil
+}
+
+func (m *mockErrorClient) UpdateScanTemplate(params ncvs.UpdateScanTemplateParams) (res string, err error) {
+	err = fmt.Errorf("this is dummy error.")
+	return
+}

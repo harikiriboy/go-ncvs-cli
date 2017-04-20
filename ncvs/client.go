@@ -27,6 +27,7 @@ type Client interface {
 	DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error)
 	DownloadScanResults(params DownloadScanResultsParams) (res string, err error)
 	ExecuteScan(params ExecuteScanParams) (res string, err error)
+	UpdateScanTemplate(params UpdateScanTemplateParams) (res string, err error)
 }
 
 // client struct
@@ -86,6 +87,13 @@ func (c *client) DownloadScanResults(params DownloadScanResultsParams) (res stri
 // ExecuteScan call ExecuteScan API and return Response
 func (c *client) ExecuteScan(params ExecuteScanParams) (res string, err error) {
 	const action = "ExecuteScan"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
+}
+
+// UpdateScanTemplate call UpdateScanTemplate API and return Response
+func (c *client) UpdateScanTemplate(params UpdateScanTemplateParams) (res string, err error) {
+	const action = "UpdateScanTemplate"
 	res, err = c.doRequest(c.makeRequest(action, params))
 	return
 }

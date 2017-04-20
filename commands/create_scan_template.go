@@ -51,8 +51,8 @@ func (p *CreateScanTemplate) SetFlags(f *flag.FlagSet) {
 	f.StringVar(&p.sshPort, "ssh-port", "", "ssh port(default: empty)")
 	f.StringVar(&p.description, "description", "", "description(default: empty)")
 	f.BoolVar(&p.useCustomRulePackages, "use-custom-rule-packages", false, "use custom rulePackages(default: false)")
-	f.Var(&p.rulePackageNames, "-rule-package-names", "the list of rulePackageName(default: [])")
-	f.Var(&p.scanTargets, "-scan-targets", "the list of scanTarget(default: [])")
+	f.Var(&p.rulePackageNames, "rule-package-names", "the list of rulePackageName(default: [])")
+	f.Var(&p.scanTargets, "scan-targets", "the list of scanTarget(default: [])")
 }
 
 // Execute execute

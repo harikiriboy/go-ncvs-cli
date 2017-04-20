@@ -112,6 +112,24 @@ const testCreateScanTemplateResponse = `{
   }
 }`
 
+// testUpdateScanTemplateResponse is dummy response of createScanTemplate
+const testUpdateScanTemplateResponse = `{
+  "RequestID":"test_request_id",
+  "ScanTemplate": {
+    "ScanTemplateName": "test_scan_template_name",
+    "SSHPort": "test_ssh_port",
+    "RulePackageNames": ["test_rule_packages"],
+    "ScanTargets": [
+      {
+        "Region": "test_scan_targets",
+        "InstanceUniqueId": "test_instance_unique_id"
+      }
+    "],
+    "Description": "test_description",
+    "CreatedTime": "test_created_time"
+  }
+}`
+
 // NewTestClient creates dummy http client of ncvs
 func newTestClient(body string) (*httptest.Server, Client) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -199,6 +217,17 @@ func TestNCVSClient(t *testing.T) {
 			var actual, expected interface{}
 			json.Unmarshal([]byte(res), &actual)
 			json.Unmarshal([]byte(testDownloadScanResultsResponse), &expected)
+
+			So(err, ShouldBeNil)
+			So(actual, ShouldResemble, expected)
+		})
+		Convey("should success update scan template", func() {
+			_, client := newTestClient(testUpdateScanTemplateResponse)
+			res, err := client.UpdateScanTemplate(UpdateScanTemplateParams{})
+
+			var actual, expected interface{}
+			json.Unmarshal([]byte(res), &actual)
+			json.Unmarshal([]byte(testUpdateScanTemplateResponse), &expected)
 
 			So(err, ShouldBeNil)
 			So(actual, ShouldResemble, expected)
