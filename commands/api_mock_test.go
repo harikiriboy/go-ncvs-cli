@@ -88,3 +88,12 @@ func (m *mockErrorClient) UpdateScanTemplate(params ncvs.UpdateScanTemplateParam
 	err = fmt.Errorf("this is dummy error.")
 	return
 }
+
+func (m *mockClient) DescribeRulePackages(params ncvs.DescribeRulePackagesParams) (res string, err error) {
+	return "this is dummy response.", nil
+}
+
+func (m *mockErrorClient) DescribeRulePackages(params ncvs.DescribeRulePackagesParams) (res string, err error) {
+	err = fmt.Errorf("this is dummy error.")
+	return
+}

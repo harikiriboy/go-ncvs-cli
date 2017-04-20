@@ -112,7 +112,7 @@ const testCreateScanTemplateResponse = `{
   }
 }`
 
-// testUpdateScanTemplateResponse is dummy response of createScanTemplate
+// testUpdateScanTemplateResponse is dummy response of updateScanTemplate
 const testUpdateScanTemplateResponse = `{
   "RequestID":"test_request_id",
   "ScanTemplate": {
@@ -128,6 +128,11 @@ const testUpdateScanTemplateResponse = `{
     "Description": "test_description",
     "CreatedTime": "test_created_time"
   }
+}`
+
+// testDescribeRulePackagesResponse is dummy response of describeRulePackages
+const testDescribeRulePackagesResponse = `{
+  "RequestID":"test_request_id",
 }`
 
 // NewTestClient creates dummy http client of ncvs
@@ -228,6 +233,17 @@ func TestNCVSClient(t *testing.T) {
 			var actual, expected interface{}
 			json.Unmarshal([]byte(res), &actual)
 			json.Unmarshal([]byte(testUpdateScanTemplateResponse), &expected)
+
+			So(err, ShouldBeNil)
+			So(actual, ShouldResemble, expected)
+		})
+		Convey("should success describe rule packages", func() {
+			_, client := newTestClient(testDescribeRulePackagesResponse)
+			res, err := client.DescribeRulePackages(DescribeRulePackagesParams{})
+
+			var actual, expected interface{}
+			json.Unmarshal([]byte(res), &actual)
+			json.Unmarshal([]byte(testDescribeRulePackagesResponse), &expected)
 
 			So(err, ShouldBeNil)
 			So(actual, ShouldResemble, expected)

@@ -22,6 +22,7 @@ const (
 type Client interface {
 	CreateScanTemplate(params CreateScanTemplateParams) (res string, err error)
 	DeleteScanTemplate(params DeleteScanTemplateParams) (res string, err error)
+	DescribeRulePackages(params DescribeRulePackagesParams) (res string, err error)
 	DescribeScanHistories(params DescribeScanHistoriesParams) (res string, err error)
 	DescribeScanResults(params DescribeScanResultsParams) (res string, err error)
 	DescribeScanTemplates(params DescribeScanTemplatesParams) (res string, err error)
@@ -52,6 +53,13 @@ func (c *client) CreateScanTemplate(params CreateScanTemplateParams) (res string
 // DeleteScanTemplate call DeleteScanTemplate API and return Response
 func (c *client) DeleteScanTemplate(params DeleteScanTemplateParams) (res string, err error) {
 	const action = "DeleteScanTemplate"
+	res, err = c.doRequest(c.makeRequest(action, params))
+	return
+}
+
+// DescribeRulePackages call DescribeRulePackages API and return Response
+func (c *client) DescribeRulePackages(params DescribeRulePackagesParams) (res string, err error) {
+	const action = "DescribeRulePackages"
 	res, err = c.doRequest(c.makeRequest(action, params))
 	return
 }
