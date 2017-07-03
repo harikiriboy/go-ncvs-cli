@@ -2,6 +2,7 @@ package ncvs
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"io"
 	"io/ioutil"
@@ -39,7 +40,13 @@ type client struct {
 }
 
 // NewClient returns a new API client
-func NewClient(endpoint string) Client {
+func NewClient(endpoint string, ignoreSSLCertsErrors bool) Client {
+	tlsConfig := &tls.Config{
+		InsecureSkipVerify: ignoreSSLCertsErrors,
+	}
+	transport := &http.Transport{TLSClientConfig: tlsConfig}
+	http.DefaultClient.Transport = transport
+
 	return &client{
 		endpoint: endpoint,
 	}

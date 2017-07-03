@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"os"
+	"strconv"
 
 	"github.com/google/subcommands"
 	"github.com/harikiriboy/go-ncvs-cli/commands"
@@ -15,7 +16,7 @@ var version string
 
 func main() {
 	writer := writer.New(os.Stdout)
-	client := ncvs.NewClient(getAPIEndpoint())
+	client := ncvs.NewClient(getAPIEndpoint(), isIgnoreSSLCertsErrors())
 
 	subcommands.Register(subcommands.HelpCommand(), "")
 	subcommands.Register(subcommands.FlagsCommand(), "")
@@ -46,4 +47,11 @@ func getAPIEndpoint() string {
 		endpoint = ncvs.DefaultAPIEndPoint
 	}
 	return endpoint
+}
+
+// IsIgnoreSSLCertsErrors return ignoreSSLCertsErrors flag
+func isIgnoreSSLCertsErrors() bool {
+	skipVerify := os.Getenv("NIFTY_CLOUD_VSS_SKIP_VERIFY")
+	result, _ := strconv.ParseBool(skipVerify)
+	return result
 }

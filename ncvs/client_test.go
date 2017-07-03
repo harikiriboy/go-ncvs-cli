@@ -159,7 +159,7 @@ func newTestClient(body string) (*httptest.Server, Client) {
 		fmt.Fprintln(w, body)
 	}))
 
-	client := NewClient(server.URL)
+	client := NewClient(server.URL, false)
 
 	return server, client
 }

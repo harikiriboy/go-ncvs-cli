@@ -18,5 +18,13 @@ func TestMain(t *testing.T) {
 			os.Setenv("NIFTY_CLOUD_VSS_URL", "test endpoint")
 			So(getAPIEndpoint(), ShouldEqual, "test endpoint")
 		})
+		Convey("should success isIgnoreSSLCertsErrors true", func() {
+			os.Setenv("NIFTY_CLOUD_VSS_SKIP_VERIFY", "true")
+			So(isIgnoreSSLCertsErrors(), ShouldEqual, true)
+		})
+		Convey("should success isIgnoreSSLCertsErrors false", func() {
+			os.Setenv("NIFTY_CLOUD_VSS_SKIP_VERIFY", "")
+			So(isIgnoreSSLCertsErrors(), ShouldEqual, false)
+		})
 	})
 }
