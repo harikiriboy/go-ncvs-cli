@@ -12,8 +12,6 @@ import (
 	"github.com/harikiriboy/go-ncvs-cli/writer"
 )
 
-var version string
-
 func main() {
 	writer := writer.New(os.Stdout)
 	client := ncvs.NewClient(getAPIEndpoint(), isIgnoreSSLCertsErrors())
@@ -22,7 +20,7 @@ func main() {
 	subcommands.Register(subcommands.FlagsCommand(), "")
 	subcommands.Register(subcommands.CommandsCommand(), "")
 
-	subcommands.Register(&commands.Version{Version: version, Writer: writer}, "version")
+	subcommands.Register(&commands.Version{Writer: writer}, "version")
 	subcommands.Register(&commands.CreateScanTemplate{Client: client, Writer: writer}, "create-scan-template")
 	subcommands.Register(&commands.DeleteScanTemplate{Client: client, Writer: writer}, "delete-scan-template")
 	subcommands.Register(&commands.DescribeRulePackages{Client: client, Writer: writer}, "describe-rule-packages")

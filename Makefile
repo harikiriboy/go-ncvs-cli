@@ -17,7 +17,7 @@ SRCS = $(shell git ls-files '*.go')
 PKGS = ./. ./commands ./ncvs ./writer
 
 VERSION := $(shell git describe --tags --abbrev=0)
-LDFLAGS := -X 'main.version=$(VERSION)'
+LDFLAGS := -X 'github.com/harikiriboy/go-ncvs-cli/version.Version=$(VERSION)'
 
 build: main.go
 	go build -ldflags "$(LDFLAGS)" -o ncvs-cli $<
