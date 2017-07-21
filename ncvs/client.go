@@ -44,7 +44,7 @@ func NewClient(endpoint string, ignoreSSLCertsErrors bool) Client {
 	tlsConfig := &tls.Config{
 		InsecureSkipVerify: ignoreSSLCertsErrors,
 	}
-	transport := &http.Transport{TLSClientConfig: tlsConfig}
+	transport := &http.Transport{TLSClientConfig: tlsConfig, Proxy: http.ProxyFromEnvironment}
 	http.DefaultClient.Transport = transport
 
 	return &client{
