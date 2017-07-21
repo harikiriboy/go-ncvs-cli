@@ -12,6 +12,8 @@ type ScanTemplate struct {
 
 // ScanTarget struct
 type ScanTarget struct {
+	Type             string
+	IPAddress        string
 	Region           string
 	InstanceUniqueID string `json:"InstanceUniqueId"`
 }
