@@ -6,13 +6,11 @@ import (
 
 	"github.com/google/subcommands"
 	"github.com/harikiriboy/go-ncvs-cli/writer"
+	"github.com/harikiriboy/go-ncvs-cli/version"
 )
-
-var version string
 
 // Version is command of version
 type Version struct {
-	Version string
 	Writer  writer.Writer
 }
 
@@ -40,6 +38,6 @@ func (p *Version) SetFlags(f *flag.FlagSet) {
 
 // Execute execute
 func (p *Version) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
-	p.Writer.Printf("ncvs-cli %s\n", p.Version)
+	p.Writer.Printf("ncvs-cli %s\n", version.Version)
 	return subcommands.ExitSuccess
 }
