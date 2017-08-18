@@ -8,7 +8,7 @@
 ## Install
 
 ```
-$ curl -L -o /usr/local/bin/ncvs-cli https://github.com/harikiriboy/go-ncvs-cli/releases/download/v1.0.0/ncvs-cli
+$ curl -L -o /usr/local/bin/ncvs-cli https://github.com/harikiriboy/go-ncvs-cli/releases/download/v1.0.2/ncvs-cli
 $ chmod +x /usr/local/bin/ncvs-cli
 $ ncvs-cli version
 ```
